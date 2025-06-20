@@ -1,0 +1,17 @@
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\bin\Debug\net8.0\CompanySystem.Application.deps.json
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\bin\Debug\net8.0\CompanySystem.Application.dll
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\bin\Debug\net8.0\CompanySystem.Application.pdb
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\bin\Debug\net8.0\CompanySystem.Domain.dll
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\bin\Debug\net8.0\CompanySystem.Domain.pdb
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\obj\Debug\net8.0\CompanySystem.Application.csproj.AssemblyReference.cache
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\obj\Debug\net8.0\CompanySystem.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\obj\Debug\net8.0\CompanySystem.Application.AssemblyInfoInputs.cache
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\obj\Debug\net8.0\CompanySystem.Application.AssemblyInfo.cs
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\obj\Debug\net8.0\CompanySystem.Application.csproj.CoreCompileInputs.cache
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\obj\Debug\net8.0\CompanyS.20D18D15.Up2Date
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\obj\Debug\net8.0\CompanySystem.Application.dll
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\obj\Debug\net8.0\refint\CompanySystem.Application.dll
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\obj\Debug\net8.0\CompanySystem.Application.pdb
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\obj\Debug\net8.0\ref\CompanySystem.Application.dll
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\bin\Debug\net8.0\CompanySystem.Shared.dll
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Application\bin\Debug\net8.0\CompanySystem.Shared.pdb

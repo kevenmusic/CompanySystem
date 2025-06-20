@@ -1,0 +1,11 @@
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Shared\bin\Debug\net8.0\CompanySystem.Shared.deps.json
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Shared\bin\Debug\net8.0\CompanySystem.Shared.dll
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Shared\bin\Debug\net8.0\CompanySystem.Shared.pdb
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Shared\obj\Debug\net8.0\CompanySystem.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Shared\obj\Debug\net8.0\CompanySystem.Shared.AssemblyInfoInputs.cache
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Shared\obj\Debug\net8.0\CompanySystem.Shared.AssemblyInfo.cs
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Shared\obj\Debug\net8.0\CompanySystem.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Shared\obj\Debug\net8.0\CompanySystem.Shared.dll
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Shared\obj\Debug\net8.0\refint\CompanySystem.Shared.dll
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Shared\obj\Debug\net8.0\CompanySystem.Shared.pdb
+C:\Users\Konstanin\Desktop\CompanySystem\CompanySystem.Shared\obj\Debug\net8.0\ref\CompanySystem.Shared.dll
