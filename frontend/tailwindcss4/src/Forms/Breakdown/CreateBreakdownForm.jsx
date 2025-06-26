@@ -1,46 +1,52 @@
-// src/Forms/Breakdown/CreateBreakdownForm.js
 import React, { useState, useContext } from 'react';
 import {
   Box,
   Button,
   FormControl,
   FormLabel,
-  Input,
-  Select,
   Textarea,
+  Select,
+  Input,
   VStack,
   useToast,
 } from '@chakra-ui/react';
 import { AuthContext } from '../../Context/AuthContext';
 
-function CreateBreakdownForm({ onCreate, employees, departments, users }) {
+function CreateBreakdownForm({
+  onCreate,
+  onCreateByUser,
+  allEmployeesWithEmployeeRole,
+  users,
+}) {
   const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     description: '',
     employeeId: '',
-    departmentId: '',
     userId: '',
-    status: 'Open', // По умолчанию "Открыто"
+    status: 'Открыто',
+    dateReported: new Date().toISOString(),
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const toast = useToast();
 
+  const isAdmin = user?.roles?.includes('Admin');
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!formData.description.trim()) {
       toast({
-        title: "Ошибка",
-        description: "Описание поломки обязательно",
-        status: "error",
+        title: 'Ошибка',
+        description: 'Описание поломки обязательно',
+        status: 'error',
         duration: 3000,
         isClosable: true,
       });
@@ -49,31 +55,20 @@ function CreateBreakdownForm({ onCreate, employees, departments, users }) {
 
     if (!formData.employeeId) {
       toast({
-        title: "Ошибка", 
-        description: "Выберите сотрудника",
-        status: "error",
+        title: 'Ошибка',
+        description: 'Выберите сотрудника',
+        status: 'error',
         duration: 3000,
         isClosable: true,
       });
       return;
     }
 
-    if (!formData.departmentId) {
+    if (isAdmin && !formData.userId) {
       toast({
-        title: "Ошибка",
-        description: "Выберите отдел", 
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-      return;
-    }
-
-    if (!formData.userId) {
-      toast({
-        title: "Ошибка",
-        description: "Выберите отдел", 
-        status: "error",
+        title: 'Ошибка',
+        description: 'Выберите пользователя',
+        status: 'error',
         duration: 3000,
         isClosable: true,
       });
@@ -81,33 +76,45 @@ function CreateBreakdownForm({ onCreate, employees, departments, users }) {
     }
 
     setIsSubmitting(true);
-    
+
     try {
-      // Добавляем userId текущего пользователя
       const breakdownData = {
-        ...formData,
-        userId: user?.id || null,
-        dateReported: new Date().toISOString(),
+        description: formData.description,
+        employeeId: formData.employeeId,
+        userId: isAdmin ? formData.userId : user?.id || null,
+        status: isAdmin ? formData.status : 'Открыто',
+        dateReported: isAdmin ? formData.dateReported : new Date().toISOString(),
       };
 
-      console.log('Debug - Creating breakdown with data:', breakdownData);
-      
-      await onCreate(breakdownData);
-      
-      // Сбрасываем форму после успешного создания
+      console.log('Creating breakdown with data:', breakdownData);
+
+      if (isAdmin) {
+        await onCreate(breakdownData);
+      } else {
+        await onCreateByUser(breakdownData);
+      }
+
       setFormData({
         description: '',
         employeeId: '',
-        departmentId: '',
         userId: '',
-        status: 'Open',
+        status: 'Открыто',
+        dateReported: new Date().toISOString(),
+      });
+
+      toast({
+        title: 'Успех',
+        description: 'Поломка успешно создана',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
       });
     } catch (error) {
       console.error('Error in form submission:', error);
       toast({
-        title: "Ошибка",
-        description: "Не удалось создать поломку",
-        status: "error",
+        title: 'Ошибка',
+        description: 'Не удалось создать поломку',
+        status: 'error',
         duration: 3000,
         isClosable: true,
       });
@@ -139,58 +146,56 @@ function CreateBreakdownForm({ onCreate, employees, departments, users }) {
               onChange={handleChange}
               placeholder="Выберите сотрудника"
             >
-              {employees.map(employee => (
+              {allEmployeesWithEmployeeRole?.map((employee) => (
                 <option key={employee.id} value={employee.id}>
-                  {employee.name}
+                  {employee.fullName}
                 </option>
               ))}
             </Select>
           </FormControl>
 
-          <FormControl isRequired>
-            <FormLabel>Отдел</FormLabel>
-            <Select
-              name="departmentId"
-              value={formData.departmentId}
-              onChange={handleChange}
-              placeholder="Выберите отдел"
-            >
-              {departments.map(department => (
-                <option key={department.id} value={department.id}>
-                  {department.name}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
+          {isAdmin && (
+            <>
+              <FormControl isRequired>
+                <FormLabel>Пользователь</FormLabel>
+                <Select
+                  name="userId"
+                  value={formData.userId}
+                  onChange={handleChange}
+                  placeholder="Выберите пользователя"
+                >
+                  {users?.map((u) => (
+                    <option key={u.id} value={u.id}>
+                      {u.username}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
 
-          <FormControl>
-            <FormLabel>Статус</FormLabel>
-            <Select
-              name="status"
-              value={formData.status}
-              onChange={handleChange}
-            >
-              <option value="Open">Открыто</option>
-              <option value="In Progress">В работе</option>
-              <option value="Closed">Закрыто</option>
-            </Select>
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Пользователь</FormLabel>
-            <Select
-              name="userId"
-              value={formData.userId}
-              onChange={handleChange}
-              placeholder="Выберите пользователя"
-            >
-              {users.map(user => (
-                <option key={user.id} value={user.id}>
-                  {user.username}
-                </option>
-              ))}
-            </Select>
-          </FormControl>
+              <FormControl isRequired>
+                <FormLabel>Статус</FormLabel>
+                <Select
+                  name="status"
+                  value={formData.status}
+                  onChange={handleChange}
+                >
+                  <option value="Сообщено">Сообщено</option>
+                  <option value="В работе">В работе</option>
+                  <option value="Завершена">Завершена</option>
+                </Select>
+              </FormControl>
 
+              <FormControl isRequired>
+                <FormLabel>Дата создания</FormLabel>
+                <Input
+                  type="datetime-local"
+                  name="dateReported"
+                  value={formData.dateReported.slice(0, 16)} 
+                  onChange={handleChange}
+                />
+              </FormControl>
+            </>
+          )}
 
           <Button
             type="submit"

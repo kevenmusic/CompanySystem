@@ -13,15 +13,14 @@ import {
   Flex,
   Badge,
 } from "@chakra-ui/react";
-import { FiUser, FiLogIn, FiUserPlus } from "react-icons/fi";
+import { FiUser, FiLogIn, FiUserPlus, FiCheck, FiPlay } from "react-icons/fi";
 
 function BreakdownsTab({
   user,
   hasRole,
   breakdowns,
-  employees,
-  departments,
-  users = [],
+  allEmployeesWithEmployeeRole,
+  users,
   onEdit,
   onDelete,
   onLoginOpen,
@@ -29,12 +28,12 @@ function BreakdownsTab({
 }) {
   const getStatusColor = (status) => {
     switch (status) {
+      case "Сообщено":
+        return "orange";
       case "В работе":
         return "blue";
-      case "Выполнено":
+      case "Завершена":
         return "green";
-      case "Отменено":
-        return "red";
       default:
         return "gray";
     }
@@ -45,51 +44,48 @@ function BreakdownsTab({
   };
 
   const getEmployeeName = (employeeId) => {
-    const employee = employees.find((emp) => emp.id === employeeId);
-    return employee ? employee.name : "Неизвестно";
+    const employee = allEmployeesWithEmployeeRole.find((emp) => emp.id === employeeId);
+    return employee ? employee.fullName : "Неизвестно";
   };
 
-  const getDepartmentName = (departmentId) => {
-    const department = departments.find((dept) => dept.id === departmentId);
-    return department ? department.name : "Неизвестно";
-  };
-
-  // Улучшенная функция поиска пользователя
   const getUserName = (userId) => {
-    console.log('Debug - getUserName called with userId:', userId, typeof userId);
-    
-    // Проверяем, что userId существует и не равен null/undefined/0
-    if (userId === null || userId === undefined || userId === 0 || userId === '0') {
-      return "Не назначен";
+    const foundUser = users.find((us) => us.id == userId);
+    return foundUser ? foundUser.username : `ID: ${userId}`;
+  };
+
+  const getEmployeeButtonText = (status) => {
+    switch (status) {
+      case "Сообщено":
+        return "Принять";
+      case "В работе":
+        return "Завершить";
+      case "Завершена":
+        return "Завершена";
+      default:
+        return "Действие";
     }
-    
-    // Проверяем наличие массива пользователей
-    if (!users || !Array.isArray(users) || users.length === 0) {
-      console.log('Debug - No users array available');
-      return "Пользователи не загружены";
+  };
+
+  const getEmployeeButtonIcon = (status) => {
+    switch (status) {
+      case "Сообщено":
+        return FiPlay;
+      case "В работе":
+        return FiCheck;
+      default:
+        return FiCheck;
     }
-    
-    // Приводим userId к числу для сравнения (на случай если приходит строка)
-    const userIdToFind = parseInt(userId, 10);
-    
-    // Если после приведения к числу получили 0 или NaN, считаем не назначенным
-    if (userIdToFind === 0 || isNaN(userIdToFind)) {
-      return "Не назначен";
+  };
+
+  const getEmployeeButtonColor = (status) => {
+    switch (status) {
+      case "Сообщено":
+        return "blue";
+      case "В работе":
+        return "green";
+      default:
+        return "gray";
     }
-    
-    // Ищем пользователя по ID
-    const foundUser = users.find((usr) => {
-      const currentUserId = parseInt(usr.id, 10);
-      return currentUserId === userIdToFind;
-    });
-    
-    console.log('Debug - Found user for ID', userIdToFind, ':', foundUser);
-    
-    if (foundUser) {
-      return foundUser.username || foundUser.name || `User ID: ${foundUser.id}`;
-    }
-    
-    return `Пользователь ID: ${userId}`;
   };
 
   if (!user) {
@@ -102,7 +98,7 @@ function BreakdownsTab({
               Требуется авторизация
             </Heading>
             <Text color="gray.500" fontSize="lg" textAlign="center">
-              Пожалуйста, войдите в аккаунт
+              Пожалуйста, войдите в аккаунт для просмотра поломок
             </Text>
             <HStack spacing={4}>
               <Button
@@ -127,29 +123,21 @@ function BreakdownsTab({
     );
   }
 
-  if (!hasRole("Admin")) {
-    return (
-      <Center h="60vh">
-        <VStack spacing={4}>
-          <Text color="gray.500" fontSize="lg" textAlign="center">
-            Поломки доступны только администратору
-          </Text>
-        </VStack>
-      </Center>
-    );
-  }
-
-  // Дополнительная отладочная информация
-  console.log('Debug - All breakdowns:', breakdowns);
-  console.log('Debug - All users in component:', users);
-  console.log('Debug - Users array length:', users?.length);
-
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-      {breakdowns.length > 0 ? (
-        breakdowns.map((breakdown) => {
-          console.log('Debug - Processing breakdown:', breakdown.id, 'userId:', breakdown.userId, 'type:', typeof breakdown.userId);
-          return (
+    <VStack spacing={4} align="stretch">
+      <Heading size="lg" color="gray.700">
+        {hasRole("Admin") ? "Все поломки в системе" : "Мои поломки"}
+      </Heading>
+
+      {!hasRole("Admin") && (
+        <Text color="gray.600" fontSize="md">
+          Здесь отображаются поломки, которые вам назначены для выполнения
+        </Text>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+        {breakdowns.length > 0 ? (
+          breakdowns.map((breakdown) => (
             <Card key={breakdown.id} shadow="md">
               <CardHeader>
                 <Flex justify="space-between" align="center">
@@ -166,60 +154,89 @@ function BreakdownsTab({
                 <Text className="mb-2">
                   <strong>Дата:</strong> {formatDate(breakdown.dateReported)}
                 </Text>
-                <Text className="mb-2">
-                  <strong>Сотрудник:</strong>{" "}
-                  {getEmployeeName(breakdown.employeeId)}
-                </Text>
-                <Text className="mb-2">
-                  <strong>Отдел:</strong>{" "}
-                  {getDepartmentName(breakdown.departmentId)}
-                </Text>
-                <Text className="mb-4">
-                  <strong>Пользователь:</strong> {getUserName(breakdown.userId)}
-                </Text>
+                {/* Поле "Сотрудник" показываем только админам */}
+                {hasRole("Admin") && (
+                  <Text className="mb-2">
+                    <strong>Сотрудник:</strong> {getEmployeeName(breakdown.employeeId)}
+                  </Text>
+                )}
+                {hasRole("Admin") && (
+                  <Text className="mb-4">
+                    <strong>Создал:</strong> {getUserName(breakdown.userId)}
+                  </Text>
+                )}
                 <Flex gap={2}>
-                  <Button
-                    size="sm"
-                    colorScheme="blue"
-                    onClick={() => onEdit(breakdown)}
-                  >
-                    Редактировать
-                  </Button>
-                  <Button
-                    size="sm"
-                    colorScheme="red"
-                    onClick={() => onDelete(breakdown)}
-                  >
-                    Удалить
-                  </Button>
+                  {hasRole("Admin") && (
+                    <Button
+                      size="sm"
+                      colorScheme="blue"
+                      onClick={() => onEdit(breakdown)}
+                    >
+                      Редактировать
+                    </Button>
+                  )}
+                  {hasRole("Employee") && !hasRole("Admin") && (
+                    <Button
+                      size="sm"
+                      colorScheme={getEmployeeButtonColor(breakdown.status)}
+                      leftIcon={React.createElement(getEmployeeButtonIcon(breakdown.status))}
+                      onClick={() => onEdit(breakdown)}
+                      disabled={breakdown.status === "Завершена"}
+                    >
+                      {getEmployeeButtonText(breakdown.status)}
+                    </Button>
+                  )}
+                  {hasRole("Admin") && (
+                    <Button
+                      size="sm"
+                      colorScheme="red"
+                      onClick={() => onDelete(breakdown)}
+                    >
+                      Удалить
+                    </Button>
+                  )}
                 </Flex>
               </CardBody>
             </Card>
-          );
-        })
-      ) : (
-        <div className="col-span-full">
-          <Card>
-            <CardBody>
-              <Text color="gray.500" fontSize="lg" textAlign="center">
-                Нет поломок для отображения
-              </Text>
-            </CardBody>
-          </Card>
-        </div>
-      )}
-      {breakdowns.length < 6 &&
-        breakdowns.length > 0 &&
-        Array.from({ length: 6 - breakdowns.length }).map((_, index) => (
-          <Card key={`empty-${index}`} bg="gray.50">
-            <CardBody>
-              <Text color="gray.400" textAlign="center">
-                Пусто
-              </Text>
-            </CardBody>
-          </Card>
-        ))}
-    </div>
+          ))
+        ) : (
+          <div className="col-span-full">
+            <Card>
+              <CardBody>
+                <Center py={8}>
+                  <VStack spacing={4}>
+                    <Text color="gray.500" fontSize="lg" textAlign="center">
+                      {hasRole("Admin")
+                        ? "Нет поломок в системе"
+                        : "У вас нет созданных поломок"}
+                    </Text>
+                    <Text color="gray.400" fontSize="sm" textAlign="center">
+                      {hasRole("Admin")
+                        ? "Поломки будут отображаться здесь после их создания"
+                        : "Создайте новую поломку, чтобы она появилась в этом списке"}
+                    </Text>
+                  </VStack>
+                </Center>
+              </CardBody>
+            </Card>
+          </div>
+        )}
+
+        {breakdowns.length < 6 &&
+          breakdowns.length > 0 &&
+          Array.from({ length: 6 - breakdowns.length }).map((_, index) => (
+            <Card key={`empty-${index}`} bg="gray.50" opacity={0.5}>
+              <CardBody>
+                <Center py={8}>
+                  <Text color="gray.400" textAlign="center" fontSize="sm">
+                    Пусто
+                  </Text>
+                </Center>
+              </CardBody>
+            </Card>
+          ))}
+      </div>
+    </VStack>
   );
 }
 

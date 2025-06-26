@@ -36,7 +36,7 @@ function ProfileTab({ user, handleLogout, onLoginOpen, onRegisterOpen }) {
               <Divider />
               
               <Box>
-                <Text fontWeight="semibold" mb={2}>Роли:</Text>
+                <Text fontWeight="semibold" mb={2}>Роль:</Text>
                 <HStack>
                   {user.roles.map((role, index) => (
                     <Badge key={index} colorScheme="blue" variant="subtle">
@@ -45,6 +45,16 @@ function ProfileTab({ user, handleLogout, onLoginOpen, onRegisterOpen }) {
                   ))}
                 </HStack>
               </Box>
+
+              {user.roles.includes("Employee") && user.employeeName && (
+                <>
+                  <Divider />
+                  <Box>
+                    <Text fontWeight="semibold" mb={2}>Сотрудник:</Text>
+                    <Text>{user.employeeName}</Text>
+                  </Box>
+                </>
+              )}
               
               <Divider />
               

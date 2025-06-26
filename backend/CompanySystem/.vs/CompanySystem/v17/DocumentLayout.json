@@ -1,0 +1,348 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CA8D7704-5620-49D8-B4B2-04900395D715}|CompanySystem.Web\\CompanySystem.Web.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.web\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA8D7704-5620-49D8-B4B2-04900395D715}|CompanySystem.Web\\CompanySystem.Web.csproj|solutionrelative:companysystem.web\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.application\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|solutionrelative:companysystem.application\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|solutionrelative:companysystem.application\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.application\\models\\authentication\\userinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|solutionrelative:companysystem.application\\models\\authentication\\userinfodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.domain\\entities\\employeeentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|solutionrelative:companysystem.domain\\entities\\employeeentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.domain\\entities\\userentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|solutionrelative:companysystem.domain\\entities\\userentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.application\\models\\authentication\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|solutionrelative:companysystem.application\\models\\authentication\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.domain\\configurations\\breakdownconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|solutionrelative:companysystem.domain\\configurations\\breakdownconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.application\\services\\breakdownsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|solutionrelative:companysystem.application\\services\\breakdownsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.application\\mappers\\breakdownsmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|solutionrelative:companysystem.application\\mappers\\breakdownsmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.domain\\entities\\breakdownentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|solutionrelative:companysystem.domain\\entities\\breakdownentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.domain\\extension\\errorextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|solutionrelative:companysystem.domain\\extension\\errorextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.domain\\entities\\departmententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|solutionrelative:companysystem.domain\\entities\\departmententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.application\\services\\departmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|solutionrelative:companysystem.application\\services\\departmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.application\\services\\employeesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{06A9F664-B642-47AE-9253-76B7AAE9AD9C}|CompanySystem.Application\\CompanySystem.Application.csproj|solutionrelative:companysystem.application\\services\\employeesservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.domain\\exceptions\\domainexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|solutionrelative:companysystem.domain\\exceptions\\domainexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.domain\\exceptions\\entitynotfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|solutionrelative:companysystem.domain\\exceptions\\entitynotfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.domain\\exceptions\\duplicateentityexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74D58978-E698-4CC7-BFA8-0959D2F7415E}|CompanySystem.Domain\\CompanySystem.Domain.csproj|solutionrelative:companysystem.domain\\exceptions\\duplicateentityexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA8D7704-5620-49D8-B4B2-04900395D715}|CompanySystem.Web\\CompanySystem.Web.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CA8D7704-5620-49D8-B4B2-04900395D715}|CompanySystem.Web\\CompanySystem.Web.csproj|solutionrelative:companysystem.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA8D7704-5620-49D8-B4B2-04900395D715}|CompanySystem.Web\\CompanySystem.Web.csproj|c:\\users\\konstanin\\desktop\\companysystem\\backend\\companysystem\\companysystem.web\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{CA8D7704-5620-49D8-B4B2-04900395D715}|CompanySystem.Web\\CompanySystem.Web.csproj|solutionrelative:companysystem.web\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ErrorExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Extension\\ErrorExtensions.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Domain\\Extension\\ErrorExtensions.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Extension\\ErrorExtensions.cs",
+              "RelativeToolTip": "CompanySystem.Domain\\Extension\\ErrorExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T07:18:02.975Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Web\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Web\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Web\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "CompanySystem.Web\\Controllers\\UsersController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAqwBIAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T05:19:18.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserEntity.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Entities\\UserEntity.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Domain\\Entities\\UserEntity.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Entities\\UserEntity.cs",
+              "RelativeToolTip": "CompanySystem.Domain\\Entities\\UserEntity.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAwwA0AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T10:46:53.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EmployeeEntity.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Entities\\EmployeeEntity.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Domain\\Entities\\EmployeeEntity.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Entities\\EmployeeEntity.cs",
+              "RelativeToolTip": "CompanySystem.Domain\\Entities\\EmployeeEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T10:50:56.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Application\\Services\\AuthService.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Services\\AuthService.cs",
+              "RelativeToolTip": "CompanySystem.Application\\Services\\AuthService.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAYwDoAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T06:31:28.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserInfoDto.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Models\\Authentication\\UserInfoDto.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Application\\Models\\Authentication\\UserInfoDto.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Models\\Authentication\\UserInfoDto.cs",
+              "RelativeToolTip": "CompanySystem.Application\\Models\\Authentication\\UserInfoDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T06:20:50.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Application\\Services\\UserService.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Services\\UserService.cs",
+              "RelativeToolTip": "CompanySystem.Application\\Services\\UserService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA1wBQAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T05:34:12.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BreakdownConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Configurations\\BreakdownConfiguration.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Domain\\Configurations\\BreakdownConfiguration.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Configurations\\BreakdownConfiguration.cs",
+              "RelativeToolTip": "CompanySystem.Domain\\Configurations\\BreakdownConfiguration.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAWwB4AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T10:53:37.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Models\\Authentication\\UserDto.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Application\\Models\\Authentication\\UserDto.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Models\\Authentication\\UserDto.cs",
+              "RelativeToolTip": "CompanySystem.Application\\Models\\Authentication\\UserDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-26T06:31:16.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DepartmentEntity.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Entities\\DepartmentEntity.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Domain\\Entities\\DepartmentEntity.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Entities\\DepartmentEntity.cs",
+              "RelativeToolTip": "CompanySystem.Domain\\Entities\\DepartmentEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T10:51:10Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BreakdownEntity.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Entities\\BreakdownEntity.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Domain\\Entities\\BreakdownEntity.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Entities\\BreakdownEntity.cs",
+              "RelativeToolTip": "CompanySystem.Domain\\Entities\\BreakdownEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T05:48:57.521Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BreakdownsMapper.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Mappers\\BreakdownsMapper.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Application\\Mappers\\BreakdownsMapper.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Mappers\\BreakdownsMapper.cs",
+              "RelativeToolTip": "CompanySystem.Application\\Mappers\\BreakdownsMapper.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T07:13:16.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BreakdownsService.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Services\\BreakdownsService.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Application\\Services\\BreakdownsService.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Services\\BreakdownsService.cs",
+              "RelativeToolTip": "CompanySystem.Application\\Services\\BreakdownsService.cs",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAmwJQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T05:23:49.068Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "EmployeesService.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Services\\EmployeesService.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Application\\Services\\EmployeesService.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Services\\EmployeesService.cs",
+              "RelativeToolTip": "CompanySystem.Application\\Services\\EmployeesService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T10:44:23.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DepartmentService.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Services\\DepartmentService.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Application\\Services\\DepartmentService.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Application\\Services\\DepartmentService.cs",
+              "RelativeToolTip": "CompanySystem.Application\\Services\\DepartmentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T10:44:23.957Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DomainException.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Exceptions\\DomainException.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Domain\\Exceptions\\DomainException.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Exceptions\\DomainException.cs",
+              "RelativeToolTip": "CompanySystem.Domain\\Exceptions\\DomainException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T07:08:11.65Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DuplicateEntityException.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Exceptions\\DuplicateEntityException.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Domain\\Exceptions\\DuplicateEntityException.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Exceptions\\DuplicateEntityException.cs",
+              "RelativeToolTip": "CompanySystem.Domain\\Exceptions\\DuplicateEntityException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T07:08:13.44Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "EntityNotFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Exceptions\\EntityNotFoundException.cs",
+              "RelativeDocumentMoniker": "CompanySystem.Domain\\Exceptions\\EntityNotFoundException.cs",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Domain\\Exceptions\\EntityNotFoundException.cs",
+              "RelativeToolTip": "CompanySystem.Domain\\Exceptions\\EntityNotFoundException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-25T07:17:51.431Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Web\\appsettings.json",
+              "RelativeDocumentMoniker": "CompanySystem.Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Web\\appsettings.json",
+              "RelativeToolTip": "CompanySystem.Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-06-24T20:12:47.934Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Web\\Dockerfile",
+              "RelativeDocumentMoniker": "CompanySystem.Web\\Dockerfile",
+              "ToolTip": "C:\\Users\\Konstanin\\Desktop\\CompanySystem\\backend\\CompanySystem\\CompanySystem.Web\\Dockerfile",
+              "RelativeToolTip": "CompanySystem.Web\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAABiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-24T20:08:47.367Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

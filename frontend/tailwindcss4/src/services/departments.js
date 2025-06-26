@@ -1,11 +1,11 @@
+// departments.js
 import axios from 'axios';
 
 const API_URL = 'http://localhost:5299/api/departments';
 
-// Вспомогательная функция для получения заголовка авторизации с JWT токеном
+// Helper function to get Authorization header with JWT token
 const getAuthHeader = () => {
   const token = localStorage.getItem('accessToken');
-  console.log("Debug - getAuthHeader token:", token);
   if (!token) {
     throw new Error('No authentication token found. Please log in.');
   }
@@ -14,53 +14,70 @@ const getAuthHeader = () => {
   };
 };
 
-// Получение списка департаментов с пагинацией
+// Общие заголовки для предотвращения кэширования
+const getNoCacheHeaders = () => ({
+  'Cache-Control': 'no-cache',
+  'Pragma': 'no-cache',
+  'Expires': '0',
+});
+
+/**
+ * Fetch для пагинации (с параметрами страницы и размера)
+ * Используется для отображения таблицы с постраничной навигацией
+ */
 export const fetchDepartments = async (pageNumber = 1, pageSize = 6) => {
   try {
+    console.log(`Debug - Fetching departments for pagination: page ${pageNumber}, size ${pageSize}`);
+
     const response = await axios.get(API_URL, {
-      params: { PageNumber: pageNumber, PageSize: pageSize },
+      params: {
+        PageNumber: pageNumber,
+        PageSize: pageSize
+      },
       headers: {
         ...getAuthHeader(),
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache',
-        'Expires': '0',
+        ...getNoCacheHeaders(),
       },
     });
 
-    console.log('Debug - Raw departments response:', response.data);
+    console.log('Debug - Paginated departments response:', response.data);
 
     const metaData = response.headers['x-pagination']
       ? JSON.parse(response.headers['x-pagination'])
       : {
-          CurrentPage: 1,
-          TotalPages: 1,
+          CurrentPage: pageNumber,
+          TotalPages: Math.ceil((response.data?.length || 0) / pageSize),
           PageSize: pageSize,
-          TotalCount: 0,
-          HasPrevious: false,
+          TotalCount: response.data?.length || 0,
+          HasPrevious: pageNumber > 1,
           HasNext: false,
         };
 
-    const items = (Array.isArray(response.data) ? response.data : [response.data].filter(Boolean)).map(item => ({
-      ...item,
-    }));
+    const items = (Array.isArray(response.data) ? response.data : [response.data].filter(Boolean))
+      .map(item => ({
+        ...item,
+        // Дополнительная обработка данных при необходимости
+      }));
 
-    console.log('Debug - Processed departments:', items);
+    console.log(`Debug - Processed ${items.length} departments for pagination`);
 
     return {
       items,
       metaData,
     };
   } catch (error) {
-    console.error('Debug - Error fetching departments:', error);
+    console.error('Debug - Error fetching departments for pagination:', error);
+
     if (axios.isAxiosError(error)) {
       if (error.response?.status === 401) {
         throw new Error('Требуется авторизация. Пожалуйста, войдите в систему.');
       }
       if (error.response?.status === 403) {
-        throw new Error('Недостаточно прав для просмотра департаментов.');
+        throw new Error('Недостаточно прав для просмотра отделов.');
       }
-      throw new Error(error.response?.data?.message || 'Не удалось загрузить департаменты.');
+      throw new Error(error.response?.data?.message || 'Не удалось загрузить отделы.');
     }
+
     return {
       items: [],
       metaData: {
@@ -72,6 +89,53 @@ export const fetchDepartments = async (pageNumber = 1, pageSize = 6) => {
         HasNext: false,
       },
     };
+  }
+};
+
+/**
+ * Fetch для списков (все данные без пагинации)
+ * Используется для Select компонентов и других списков выбора
+ */
+export const fetchAllDepartments = async () => {
+  try {
+    console.log('Debug - Fetching all departments for select lists');
+
+    const response = await axios.get(`${API_URL}/all`, {
+      headers: {
+        ...getAuthHeader(),
+        ...getNoCacheHeaders(),
+      },
+    });
+
+    console.log('Debug - All departments response:', response.data);
+
+    const items = Array.isArray(response.data)
+      ? response.data
+      : [response.data].filter(Boolean);
+
+    const processedItems = items.map(item => ({
+      ...item,
+      label: item.name || `Department ${item.id}`,
+      value: item.id,
+    }));
+
+    console.log(`Debug - Processed ${processedItems.length} departments for select lists`);
+    return processedItems;
+
+  } catch (error) {
+    console.error('Debug - Error fetching all departments:', error);
+
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 401) {
+        throw new Error('Требуется авторизация. Пожалуйста, войдите в систему.');
+      }
+      if (error.response?.status === 403) {
+        throw new Error('Недостаточно прав для просмотра отделов.');
+      }
+      throw new Error(error.response?.data?.message || 'Не удалось загрузить отделы.');
+    }
+
+    return [];
   }
 };
 

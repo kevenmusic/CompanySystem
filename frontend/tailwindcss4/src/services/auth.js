@@ -9,6 +9,7 @@ const storeAuthData = (responseData) => {
   localStorage.setItem('userId', responseData.user?.id || '');
   localStorage.setItem('username', responseData.user?.username || '');
   localStorage.setItem('roles', JSON.stringify(responseData.user?.roles || ['User']));
+  localStorage.setItem('employeeName', responseData.user?.employeeName || '');
 };
 
 // Helper function to clear tokens and user data
@@ -18,29 +19,21 @@ const clearAuthData = () => {
   localStorage.removeItem('userId');
   localStorage.removeItem('username');
   localStorage.removeItem('roles');
+  localStorage.removeItem('employeeName');
 };
 
 // Register a new user
 export const register = async (userData) => {
   try {
-    console.log('Register payload:', userData);
     if (!userData.username || !userData.password) {
-      console.error('Register validation failed: Missing username or password');
       throw new Error('Username and password are required');
     }
-    console.log('Register request URL:', `${API_URL}/register`);
     const response = await axios.post(`${API_URL}/register`, {
       username: userData.username,
       password: userData.password,
     });
-    console.log('Register response:', response.data);
     return response.data;
   } catch (error) {
-    console.error('Register error:', {
-      message: error.message,
-      response: error.response?.data,
-      status: error.response?.status,
-    });
     const errorMessage =
       error.response?.data?.message ||
       error.response?.data ||
@@ -56,7 +49,6 @@ export const register = async (userData) => {
 // Login user
 export const login = async (userData) => {
   try {
-    console.log('Login payload:', userData);
     const source = axios.CancelToken.source();
     const timeout = setTimeout(() => {
       source.cancel('Request timed out');
@@ -72,24 +64,21 @@ export const login = async (userData) => {
     );
 
     clearTimeout(timeout);
+
     if (!response.data.user) {
-      console.error('Login response missing user object:', response.data);
       throw new Error('User data not provided in login response');
     }
+
     storeAuthData(response.data);
-    console.log('Login response:', response.data);
+
     return {
       id: response.data.user.id,
       username: response.data.user.username,
       roles: response.data.user.roles || ['User'],
       token: response.data.accessToken,
+      employeeName: response.data.user.employeeName, // Добавляем employeeName в возвращаемые данные
     };
   } catch (error) {
-    console.error('Login error:', {
-      message: error.message,
-      response: error.response?.data,
-      status: error.response?.status,
-    });
     const errorMessage =
       error.message ||
       error.response?.data?.message ||
@@ -116,14 +105,8 @@ export const refreshToken = async () => {
       refreshToken,
     });
     storeAuthData(response.data);
-    console.log('Refresh token response:', response.data);
     return response.data;
   } catch (error) {
-    console.error('Refresh token error:', {
-      message: error.message,
-      response: error.response?.data,
-      status: error.response?.status,
-    });
     clearAuthData();
     throw new Error(error.response?.data?.message || 'Token refresh failed');
   }
@@ -134,8 +117,7 @@ export const logout = async () => {
   try {
     clearAuthData();
     return true;
-  } catch (error) {
-    console.error('Logout error:', error);
+  } catch {
     return false;
   }
 };

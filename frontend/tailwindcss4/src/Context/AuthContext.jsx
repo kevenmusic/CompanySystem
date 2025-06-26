@@ -1,4 +1,3 @@
-// src/Context/AuthContext.js
 import React, { createContext, useState, useEffect } from 'react';
 
 export const AuthContext = createContext();
@@ -11,31 +10,40 @@ export const AuthProvider = ({ children }) => {
     const accessToken = localStorage.getItem('accessToken');
     const userId = localStorage.getItem('userId');
     const username = localStorage.getItem('username');
-    const roles = localStorage.getItem('roles');
-    console.log('Debug - AuthContext initializing:', { accessToken, userId, username, roles });
+    const roles = JSON.parse(localStorage.getItem('roles'));
+    const employeeName = localStorage.getItem('employeeName');
+
     if (accessToken && userId && username) {
-      setUser({ id: userId, username, roles: JSON.parse(roles) || ['User'] });
+      setUser({
+        id: userId,
+        username,
+        roles: roles || ['User'],
+        employeeName: employeeName || null,
+      });
     }
+
     setIsLoading(false);
   }, []);
 
   const authLogin = (userData, token) => {
-    console.log('Debug - AuthContext login:', userData, token);
     setUser(userData);
     localStorage.setItem('accessToken', token);
     localStorage.setItem('userId', userData.id);
     localStorage.setItem('username', userData.username);
     localStorage.setItem('roles', JSON.stringify(userData.roles));
+    if (userData.employeeName) {
+      localStorage.setItem('employeeName', userData.employeeName);
+    } else {
+      localStorage.removeItem('employeeName');
+    }
   };
 
   const logout = () => {
-    console.log('Debug - AuthContext logout');
     setUser(null);
     localStorage.clear();
   };
 
   const hasRole = (role) => {
-    console.log('Debug - Checking role:', role, 'for user:', user);
     return user?.roles?.includes(role) || false;
   };
 

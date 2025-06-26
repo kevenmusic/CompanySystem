@@ -1,4 +1,3 @@
-// src/components/Tabs/EmployeesTab.js
 import React from 'react';
 import {
   Box,
@@ -15,7 +14,17 @@ import {
 } from '@chakra-ui/react';
 import { FiUsers } from 'react-icons/fi';
 
-function EmployeesTab({ user, employees, onEdit, onDelete, hasRole }) {
+function EmployeesTab({ 
+  user, 
+  allDepartments, 
+  allEmployees,
+  employeeUsers, 
+  employees, 
+  users, // Добавляем users в пропсы
+  onEdit, 
+  onDelete, 
+  hasRole 
+}) {
   if (!user || !hasRole('Admin')) {
     return (
       <Center h="60vh">
@@ -32,6 +41,18 @@ function EmployeesTab({ user, employees, onEdit, onDelete, hasRole }) {
     );
   }
 
+  // Функция для получения имени отдела
+  const getDepartmentName = (departmentId) => {
+    const department = allDepartments.find((dep) => dep.id === departmentId);
+    return department ? department.name : "Неизвестно";
+  };
+
+  // Функция для получения имени пользователя
+  const getUserName = (userId) => {
+    const foundUser = employeeUsers.find((u) => u.id === userId);
+    return foundUser ? foundUser.username : "Неизвестно";
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
       {employees.length > 0 ? (
@@ -41,8 +62,14 @@ function EmployeesTab({ user, employees, onEdit, onDelete, hasRole }) {
               <Heading size="md">Сотрудник #{employee.id}</Heading>
             </CardHeader>
             <CardBody>
+              <Text className="mb-2">
+                <strong>Имя:</strong> {employee.fullName}
+              </Text>
+              <Text className="mb-2">
+                <strong>Пользователь:</strong> {getUserName(employee.userId)}
+              </Text>
               <Text className="mb-4">
-                <strong>Имя:</strong> {employee.name}
+                <strong>Отдел:</strong> {getDepartmentName(employee.departmentId)}
               </Text>
               <Flex gap={2}>
                 <Button

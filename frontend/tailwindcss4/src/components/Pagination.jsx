@@ -10,7 +10,6 @@ export default function Pagination({ metaData, onPageChange, pageSize }) {
     }
   };
 
-  // Создаем массив номеров страниц для отображения (например, 1, 2, 3, ..., 10)
   const getPageNumbers = () => {
     const pages = [];
     const maxPagesToShow = 5;
@@ -31,7 +30,7 @@ export default function Pagination({ metaData, onPageChange, pageSize }) {
     <Flex alignItems="center" justifyContent="center" gap={2} className="mt-4">
       <Button
         leftIcon={<FaArrowLeft />}
-        colorScheme="teal"
+        colorScheme="blue"
         size="sm"
         onClick={() => handlePageChange(CurrentPage - 1)}
         isDisabled={!HasPrevious}
@@ -44,7 +43,7 @@ export default function Pagination({ metaData, onPageChange, pageSize }) {
         {getPageNumbers().map(page => (
           <Button
             key={page}
-            colorScheme={page === CurrentPage ? 'teal' : 'gray'}
+            colorScheme={page === CurrentPage ? 'blue' : 'gray'}
             size="sm"
             onClick={() => handlePageChange(page)}
             className="flex items-center"
@@ -56,7 +55,7 @@ export default function Pagination({ metaData, onPageChange, pageSize }) {
 
       <Button
         rightIcon={<FaArrowRight />}
-        colorScheme="teal"
+        colorScheme="blue"
         size="sm"
         onClick={() => handlePageChange(CurrentPage + 1)}
         isDisabled={!HasNext}

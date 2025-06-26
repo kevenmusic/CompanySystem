@@ -1,9 +1,7 @@
-// employees.js - оптимизированный сервис
 import axios from 'axios';
 
 const API_URL = 'http://localhost:5299/api/employees';
 
-// Helper function to get Authorization header with JWT token
 const getAuthHeader = () => {
   const token = localStorage.getItem('accessToken');
   if (!token) {
@@ -14,25 +12,20 @@ const getAuthHeader = () => {
   };
 };
 
-// Общие заголовки для предотвращения кэширования
 const getNoCacheHeaders = () => ({
   'Cache-Control': 'no-cache',
-  'Pragma': 'no-cache',
-  'Expires': '0',
+  Pragma: 'no-cache',
+  Expires: '0',
 });
 
-/**
- * Fetch для пагинации (с параметрами страницы и размера)
- * Используется для отображения таблицы с постраничной навигацией
- */
 export const fetchEmployees = async (pageNumber = 1, pageSize = 6) => {
+  console.log(`Fetching employees: page ${pageNumber}, size ${pageSize}`);
+  
   try {
-    console.log(`Debug - Fetching employees for pagination: page ${pageNumber}, size ${pageSize}`);
-    
     const response = await axios.get(API_URL, {
-      params: { 
-        PageNumber: pageNumber, 
-        PageSize: pageSize 
+      params: {
+        PageNumber: pageNumber,
+        PageSize: pageSize
       },
       headers: {
         ...getAuthHeader(),
@@ -40,9 +33,25 @@ export const fetchEmployees = async (pageNumber = 1, pageSize = 6) => {
       },
     });
 
-    console.log('Debug - Paginated employees response:', response.data);
+    console.log("API Response:", response);
+    console.log("Response headers:", response.headers);
 
-    // Извлекаем метаданные пагинации из заголовков
+    // Проверяем наличие данных
+    if (!response.data) {
+      console.warn("No data in response");
+      return {
+        items: [],
+        metaData: {
+          CurrentPage: pageNumber,
+          TotalPages: 1,
+          PageSize: pageSize,
+          TotalCount: 0,
+          HasPrevious: false,
+          HasNext: false,
+        },
+      };
+    }
+
     const metaData = response.headers['x-pagination']
       ? JSON.parse(response.headers['x-pagination'])
       : {
@@ -54,21 +63,22 @@ export const fetchEmployees = async (pageNumber = 1, pageSize = 6) => {
           HasNext: false,
         };
 
-    // Обрабатываем данные сотрудников
-    const items = (Array.isArray(response.data) ? response.data : [response.data].filter(Boolean))
+    console.log("Parsed metaData:", metaData);
+
+    const items = (Array.isArray(response.data) ? response.data : [response.data])
+      .filter(Boolean)
       .map(item => ({
         ...item,
-        // Дополнительная обработка данных при необходимости
       }));
 
-    console.log(`Debug - Processed ${items.length} employees for pagination`);
+    console.log("Processed items:", items);
 
     return {
       items,
       metaData,
     };
   } catch (error) {
-    console.error('Debug - Error fetching employees for pagination:', error);
+    console.error("fetchEmployees error:", error);
     
     if (axios.isAxiosError(error)) {
       if (error.response?.status === 401) {
@@ -77,10 +87,12 @@ export const fetchEmployees = async (pageNumber = 1, pageSize = 6) => {
       if (error.response?.status === 403) {
         throw new Error('Недостаточно прав для просмотра сотрудников.');
       }
+      console.error("API Error response:", error.response?.data);
       throw new Error(error.response?.data?.message || 'Не удалось загрузить сотрудников.');
     }
     
-    // Возвращаем пустой результат при ошибке
+    // В случае ошибки возвращаем пустой результат вместо throw
+    console.error("Non-axios error:", error);
     return {
       items: [],
       metaData: {
@@ -95,14 +107,8 @@ export const fetchEmployees = async (pageNumber = 1, pageSize = 6) => {
   }
 };
 
-/**
- * Fetch для списков (все данные без пагинации)
- * Используется для Select компонентов и других списков выбора
- */
 export const fetchAllEmployees = async () => {
   try {
-    console.log('Debug - Fetching all employees for select lists');
-    
     const response = await axios.get(`${API_URL}/all`, {
       headers: {
         ...getAuthHeader(),
@@ -110,27 +116,16 @@ export const fetchAllEmployees = async () => {
       },
     });
 
-    console.log('Debug - All employees response:', response.data);
-
-    // Обрабатываем данные
     const items = Array.isArray(response.data) 
       ? response.data 
       : [response.data].filter(Boolean);
 
-    // Возвращаем обработанные данные с дополнительными полями для Select
-    const processedItems = items.map(item => ({
+    return items.map(item => ({
       ...item,
-      // Добавляем поля для удобства использования в Select
       label: item.name || `${item.firstName} ${item.lastName}` || `Employee ${item.id}`,
       value: item.id,
     }));
-
-    console.log(`Debug - Processed ${processedItems.length} employees for select lists`);
-    return processedItems;
-    
   } catch (error) {
-    console.error('Debug - Error fetching all employees:', error);
-    
     if (axios.isAxiosError(error)) {
       if (error.response?.status === 401) {
         throw new Error('Требуется авторизация. Пожалуйста, войдите в систему.');
@@ -140,28 +135,74 @@ export const fetchAllEmployees = async () => {
       }
       throw new Error(error.response?.data?.message || 'Не удалось загрузить сотрудников.');
     }
-    
     return [];
   }
 };
 
-/**
- * Создание нового сотрудника
- */
+// НОВАЯ ФУНКЦИЯ: Получить сотрудника по ID
+export const fetchEmployeeById = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/${id}`, {
+      headers: {
+        ...getAuthHeader(),
+        ...getNoCacheHeaders(),
+      },
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 401) {
+        throw new Error('Требуется авторизация. Пожалуйста, войдите в систему.');
+      }
+      if (error.response?.status === 404) {
+        throw new Error(`Сотрудник с ID ${id} не найден.`);
+      }
+      throw new Error(error.response?.data?.message || 'Не удалось загрузить сотрудника.');
+    }
+    throw new Error('Неизвестная ошибка при загрузке сотрудника.');
+  }
+};
+
+// НОВАЯ ФУНКЦИЯ: Получить всех сотрудников с ролью Employee
+export const fetchAllEmployeesWithEmployeeRole = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/employees-with-role`, {
+      headers: {
+        ...getAuthHeader(),
+        ...getNoCacheHeaders(),
+      },
+    });
+
+    const items = Array.isArray(response.data) 
+      ? response.data 
+      : [response.data].filter(Boolean);
+
+    return items.map(item => ({
+      ...item,
+      label: item.name || `${item.firstName} ${item.lastName}` || `Employee ${item.id}`,
+      value: item.id,
+    }));
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 401) {
+        throw new Error('Требуется авторизация. Пожалуйста, войдите в систему.');
+      }
+      if (error.response?.status === 403) {
+        throw new Error('Недостаточно прав для просмотра сотрудников с ролью Employee.');
+      }
+      throw new Error(error.response?.data?.message || 'Не удалось загрузить сотрудников с ролью Employee.');
+    }
+    return [];
+  }
+};
+
 export const createEmployee = async (employee) => {
   try {
-    console.log('Debug - Creating employee:', employee);
-    
     const response = await axios.post(API_URL, employee, {
       headers: getAuthHeader(),
     });
-    
-    console.log('Debug - Employee created:', response.data);
     return response.data;
-    
   } catch (error) {
-    console.error('Debug - Error creating employee:', error);
-    
     if (axios.isAxiosError(error)) {
       if (error.response?.status === 401) {
         throw new Error('Требуется авторизация. Пожалуйста, войдите в систему.');
@@ -174,28 +215,17 @@ export const createEmployee = async (employee) => {
       }
       throw new Error(error.response?.data?.message || 'Не удалось создать сотрудника.');
     }
-    
     throw new Error('Неизвестная ошибка при создании сотрудника.');
   }
 };
 
-/**
- * Обновление сотрудника
- */
 export const updateEmployee = async (id, employee) => {
   try {
-    console.log(`Debug - Updating employee ${id}:`, employee);
-    
     const response = await axios.put(`${API_URL}/${id}`, employee, {
       headers: getAuthHeader(),
     });
-    
-    console.log('Debug - Employee updated:', response.data);
     return response.data;
-    
   } catch (error) {
-    console.error(`Debug - Error updating employee ${id}:`, error);
-    
     if (axios.isAxiosError(error)) {
       if (error.response?.status === 401) {
         throw new Error('Требуется авторизация. Пожалуйста, войдите в систему.');
@@ -211,28 +241,17 @@ export const updateEmployee = async (id, employee) => {
       }
       throw new Error(error.response?.data?.message || 'Не удалось обновить сотрудника.');
     }
-    
     throw new Error('Неизвестная ошибка при обновлении сотрудника.');
   }
 };
 
-/**
- * Удаление сотрудника
- */
 export const deleteEmployee = async (id) => {
   try {
-    console.log(`Debug - Deleting employee ${id}`);
-    
     await axios.delete(`${API_URL}/${id}`, {
       headers: getAuthHeader(),
     });
-    
-    console.log(`Debug - Employee ${id} deleted successfully`);
     return id;
-    
   } catch (error) {
-    console.error(`Debug - Error deleting employee ${id}:`, error);
-    
     if (axios.isAxiosError(error)) {
       if (error.response?.status === 401) {
         throw new Error('Требуется авторизация. Пожалуйста, войдите в систему.');
@@ -248,7 +267,32 @@ export const deleteEmployee = async (id) => {
       }
       throw new Error(error.response?.data?.message || 'Не удалось удалить сотрудника.');
     }
-    
     throw new Error('Неизвестная ошибка при удалении сотрудника.');
+  }
+};
+
+/**
+ * Получить список поломок для сотрудника по id
+ */
+export const fetchBreakdownsForEmployee = async (id) => {
+  try {
+    const response = await axios.get(`${API_URL}/${id}/breakdowns`, {
+      headers: getAuthHeader(),
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 401) {
+        throw new Error('Требуется авторизация. Пожалуйста, войдите в систему.');
+      }
+      if (error.response?.status === 403) {
+        throw new Error('Недостаточно прав для просмотра поломок сотрудника.');
+      }
+      if (error.response?.status === 404) {
+        throw new Error('Сотрудник не найден.');
+      }
+      throw new Error(error.response?.data?.message || 'Не удалось загрузить поломки сотрудника.');
+    }
+    throw new Error('Неизвестная ошибка при загрузке поломок сотрудника.');
   }
 };

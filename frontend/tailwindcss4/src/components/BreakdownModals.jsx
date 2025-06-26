@@ -10,21 +10,26 @@ function BreakdownModals({
   onCloseDelete,
   onUpdate,
   onConfirmDelete,
-  employees,
-  users,  
-  departments,
-}) {
+  onUpdateByEmployee,
+  allEmployeesWithEmployeeRole,
+  isCompleteMode,
+  users,
+  isEmployee = false, 
+  }) {
   return (
     <>
       {selectedBreakdown && (
         <EditBreakdownForm
           isOpen={isEditModalOpen}
           onClose={onCloseEdit}
-          onUpdate={onUpdate}
+          {...(isEmployee 
+            ? { onUpdateByEmployee } 
+            : { onUpdate }
+          )}
+          isCompleteMode={isCompleteMode}
           breakdown={selectedBreakdown}
-          employees={employees}
+          allEmployeesWithEmployeeRole={allEmployeesWithEmployeeRole}
           users={users}
-          departments={departments}
         />
       )}
 

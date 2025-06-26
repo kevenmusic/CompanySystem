@@ -1,0 +1,91 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: companysystem_db
+    environment:
+      POSTGRES_DB: companysystemdb2
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 3654
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - companysystem_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d companysystemdb2"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend Web API
+  backend:
+    build:
+      context: ./backend/CompanySystem
+      dockerfile: Dockerfile.dev
+    container_name: companysystem_api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=companysystemdb2;Username=postgres;Password=3654
+      - AppSettings__Token=MySuperSecureAndRandomKeyThatLooksJustAwesomeAndNeedsToBeVeryVeryLong!!!111oneeleven
+      - AppSettings__Issuer=MyAwesomeApp
+      - AppSettings__Audience=MyAwesomeAudience
+      - ASPNETCORE_HTTP_PORTS=8080
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - companysystem_network
+    restart: unless-stopped
+    volumes:
+      - ./backend/CompanySystem:/src
+      - /src/CompanySystem.Web/bin
+      - /src/CompanySystem.Web/obj
+
+  # Frontend (Node.js с Tailwind CSS)
+  frontend:
+    build:
+      context: ./frontend/tailwindcss4
+      dockerfile: Dockerfile
+    container_name: companysystem_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_URL=http://localhost:8080
+    depends_on:
+      - backend
+    networks:
+      - companysystem_network
+    restart: unless-stopped
+    volumes:
+      - ./frontend/tailwindcss4:/app
+      - /app/node_modules
+
+  # Nginx Reverse Proxy (опционально)
+  nginx:
+    image: nginx:alpine
+    container_name: companysystem_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - companysystem_network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  companysystem_network:
+    driver: bridge
